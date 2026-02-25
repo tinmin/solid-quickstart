@@ -328,6 +328,352 @@
             resultDiv.scrollIntoView({ behavior: 'smooth' });
         });
                 </script>
+<script>
+// Calendar Appointment Booking Script for Kei Truck
+document.addEventListener('DOMContentLoaded', function() {
+    // Create the appointment booking container
+    const appointmentSection = document.createElement('div');
+    appointmentSection.className = 'appointment-section';
+    appointmentSection.style.maxWidth = '600px';
+    appointmentSection.style.margin = '40px auto';
+    appointmentSection.style.padding = '20px';
+    appointmentSection.style.fontFamily = 'sans-serif';
+    
+    // Add the section title
+    const sectionTitle = document.createElement('h2');
+    sectionTitle.textContent = 'Book a Consultation';
+    sectionTitle.style.fontSize = '24px';
+    sectionTitle.style.marginBottom = '20px';
+    sectionTitle.style.fontWeight = '500';
+    appointmentSection.appendChild(sectionTitle);
+    
+    // Add Japanese subtitle
+    const japaneseTitle = document.createElement('p');
+    japaneseTitle.textContent = 'コンサルテーションの予約';
+    japaneseTitle.style.fontSize = '16px';
+    japaneseTitle.style.marginBottom = '30px';
+    japaneseTitle.style.fontWeight = '300';
+    appointmentSection.appendChild(japaneseTitle);
+    
+    // Create the calendar container
+    const calendarContainer = document.createElement('div');
+    calendarContainer.className = 'calendar-container';
+    appointmentSection.appendChild(calendarContainer);
+    
+    // Current date for calendar initialization
+    const currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    
+    // Month names
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                        'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    // Calendar header
+    const calendarHeader = document.createElement('div');
+    calendarHeader.className = 'calendar-header';
+    calendarHeader.style.display = 'flex';
+    calendarHeader.style.justifyContent = 'space-between';
+    calendarHeader.style.alignItems = 'center';
+    calendarHeader.style.marginBottom = '15px';
+    
+    // Previous month button
+    const prevMonthBtn = document.createElement('button');
+    prevMonthBtn.innerHTML = '&laquo;';
+    prevMonthBtn.style.padding = '5px 10px';
+    prevMonthBtn.style.backgroundColor = 'transparent';
+    prevMonthBtn.style.border = 'none';
+    prevMonthBtn.style.cursor = 'pointer';
+    prevMonthBtn.style.fontSize = '16px';
+    calendarHeader.appendChild(prevMonthBtn);
+    
+    // Month and year display
+    const monthYearDisplay = document.createElement('span');
+    monthYearDisplay.id = 'month-year-display';
+    monthYearDisplay.style.fontWeight = '500';
+    calendarHeader.appendChild(monthYearDisplay);
+    
+    // Next month button
+    const nextMonthBtn = document.createElement('button');
+    nextMonthBtn.innerHTML = '&raquo;';
+    nextMonthBtn.style.padding = '5px 10px';
+    nextMonthBtn.style.backgroundColor = 'transparent';
+    nextMonthBtn.style.border = 'none';
+    nextMonthBtn.style.cursor = 'pointer';
+    nextMonthBtn.style.fontSize = '16px';
+    calendarHeader.appendChild(nextMonthBtn);
+    
+    calendarContainer.appendChild(calendarHeader);
+    
+    // Calendar grid
+    const calendarGrid = document.createElement('div');
+    calendarGrid.className = 'calendar-grid';
+    calendarGrid.style.display = 'grid';
+    calendarGrid.style.gridTemplateColumns = 'repeat(7, 1fr)';
+    calendarGrid.style.gap = '5px';
+    calendarContainer.appendChild(calendarGrid);
+    
+    // Day names row
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    dayNames.forEach(day => {
+        const dayNameCell = document.createElement('div');
+        dayNameCell.className = 'day-name';
+        dayNameCell.textContent = day;
+        dayNameCell.style.textAlign = 'center';
+        dayNameCell.style.padding = '5px';
+        dayNameCell.style.fontWeight = '500';
+        dayNameCell.style.fontSize = '14px';
+        calendarGrid.appendChild(dayNameCell);
+    });
+    
+    // Appointment form section
+    const appointmentForm = document.createElement('div');
+    appointmentForm.className = 'appointment-form';
+    appointmentForm.style.marginTop = '30px';
+    appointmentForm.style.display = 'none';
+    
+    const selectedDateDisplay = document.createElement('p');
+    selectedDateDisplay.id = 'selected-date';
+    selectedDateDisplay.style.marginBottom = '20px';
+    selectedDateDisplay.style.fontWeight = '500';
+    appointmentForm.appendChild(selectedDateDisplay);
+    
+    // Time selection
+    const timeLabel = document.createElement('label');
+    timeLabel.textContent = 'Select Time:';
+    timeLabel.style.display = 'block';
+    timeLabel.style.marginBottom = '8px';
+    appointmentForm.appendChild(timeLabel);
+    
+    const timeSelect = document.createElement('select');
+    timeSelect.id = 'time-select';
+    timeSelect.style.width = '100%';
+    timeSelect.style.padding = '8px';
+    timeSelect.style.marginBottom = '20px';
+    timeSelect.style.borderRadius = '0';
+    timeSelect.style.border = '1px solid #ddd';
+    
+    // Add time options - 9 AM to 5 PM
+    for (let hour = 9; hour <= 17; hour++) {
+        const option = document.createElement('option');
+        option.value = hour < 12 ? `${hour}:00 AM` : hour === 12 ? `${hour}:00 PM` : `${hour-12}:00 PM`;
+        option.textContent = hour < 12 ? `${hour}:00 AM` : hour === 12 ? `${hour}:00 PM` : `${hour-12}:00 PM`;
+        timeSelect.appendChild(option);
+    }
+    appointmentForm.appendChild(timeSelect);
+    
+    // Name input
+    const nameLabel = document.createElement('label');
+    nameLabel.textContent = 'Your Name:';
+    nameLabel.style.display = 'block';
+    nameLabel.style.marginBottom = '8px';
+    appointmentForm.appendChild(nameLabel);
+    
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.id = 'name-input';
+    nameInput.style.width = '100%';
+    nameInput.style.padding = '8px';
+    nameInput.style.marginBottom = '15px';
+    nameInput.style.borderRadius = '0';
+    nameInput.style.border = '1px solid #ddd';
+    appointmentForm.appendChild(nameInput);
+    
+    // Email input
+    const emailLabel = document.createElement('label');
+    emailLabel.textContent = 'Email:';
+    emailLabel.style.display = 'block';
+    emailLabel.style.marginBottom = '8px';
+    appointmentForm.appendChild(emailLabel);
+    
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.id = 'email-input';
+    emailInput.style.width = '100%';
+    emailInput.style.padding = '8px';
+    emailInput.style.marginBottom = '15px';
+    emailInput.style.borderRadius = '0';
+    emailInput.style.border = '1px solid #ddd';
+    appointmentForm.appendChild(emailInput);
+    
+    // Purpose dropdown
+    const purposeLabel = document.createElement('label');
+    purposeLabel.textContent = 'Purpose:';
+    purposeLabel.style.display = 'block';
+    purposeLabel.style.marginBottom = '8px';
+    appointmentForm.appendChild(purposeLabel);
+    
+    const purposeSelect = document.createElement('select');
+    purposeSelect.id = 'purpose-select';
+    purposeSelect.style.width = '100%';
+    purposeSelect.style.padding = '8px';
+    purposeSelect.style.marginBottom = '25px';
+    purposeSelect.style.borderRadius = '0';
+    purposeSelect.style.border = '1px solid #ddd';
+    
+    const purposes = [
+        'Design Consultation',
+        'Moving Service',
+        'Mobility Solution',
+        'Partnership Inquiry',
+        'Other'
+    ];
+    
+    purposes.forEach(purpose => {
+        const option = document.createElement('option');
+        option.value = purpose;
+        option.textContent = purpose;
+        purposeSelect.appendChild(option);
+    });
+    appointmentForm.appendChild(purposeSelect);
+    
+    // Submit button
+    const submitBtn = document.createElement('button');
+    submitBtn.textContent = 'Book Appointment';
+    submitBtn.style.backgroundColor = '#000';
+    submitBtn.style.color = '#fff';
+    submitBtn.style.border = 'none';
+    submitBtn.style.padding = '12px 20px';
+    submitBtn.style.cursor = 'pointer';
+    submitBtn.style.width = '100%';
+    submitBtn.style.fontSize = '16px';
+    appointmentForm.appendChild(submitBtn);
+    
+    calendarContainer.appendChild(appointmentForm);
+    
+    // Insert the appointment section into the page
+    const targetElement = document.querySelector('.News, #news, [class*="news"]') || 
+                        document.querySelector('body > *:nth-child(3)');
+    if (targetElement) {
+        targetElement.parentNode.insertBefore(appointmentSection, targetElement);
+    } else {
+        document.body.appendChild(appointmentSection);
+    }
+    
+    // Calendar functionality
+    function renderCalendar(month, year) {
+        // Update month and year display
+        monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
+        
+        // Clear previous dates
+        const dateCells = calendarGrid.querySelectorAll('.date-cell');
+        dateCells.forEach(cell => cell.remove());
+        
+        // Calculate first day of month
+        const firstDay = new Date(year, month, 1).getDay();
+        
+        // Number of days in month
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        // Create date cells
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'date-cell empty';
+            emptyCell.style.padding = '10px';
+            emptyCell.style.textAlign = 'center';
+            calendarGrid.appendChild(emptyCell);
+        }
+        
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dateCell = document.createElement('div');
+            dateCell.className = 'date-cell';
+            dateCell.textContent = day;
+            dateCell.setAttribute('data-date', `${year}-${month+1}-${day}`);
+            dateCell.style.padding = '10px';
+            dateCell.style.textAlign = 'center';
+            dateCell.style.cursor = 'pointer';
+            dateCell.style.border = '1px solid #eee';
+            
+            // Disable past dates
+            const cellDate = new Date(year, month, day);
+            if (cellDate < new Date().setHours(0,0,0,0)) {
+                dateCell.style.color = '#ccc';
+                dateCell.style.cursor = 'default';
+                dateCell.classList.add('disabled');
+            } else {
+                // Add click event for available dates
+                dateCell.addEventListener('click', function() {
+                    // Remove selection from all cells
+                    document.querySelectorAll('.date-cell').forEach(cell => {
+                        cell.style.backgroundColor = '';
+                        cell.style.color = cell.classList.contains('disabled') ? '#ccc' : '';
+                    });
+                    
+                    // Highlight selected cell
+                    this.style.backgroundColor = '#000';
+                    this.style.color = '#fff';
+                    
+                    // Show appointment form and update selected date
+                    appointmentForm.style.display = 'block';
+                    const dateStr = this.getAttribute('data-date').split('-');
+                    const formattedDate = `${monthNames[parseInt(dateStr[1])-1]} ${dateStr[2]}, ${dateStr[0]}`;
+                    selectedDateDisplay.textContent = `Selected Date: ${formattedDate}`;
+                    
+                    // Smooth scroll to form
+                    appointmentForm.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+            
+            calendarGrid.appendChild(dateCell);
+        }
+    }
+    
+    // Initialize calendar
+    renderCalendar(currentMonth, currentYear);
+    
+    // Previous month button event
+    prevMonthBtn.addEventListener('click', function() {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        renderCalendar(currentMonth, currentYear);
+    });
+    
+    // Next month button event
+    nextMonthBtn.addEventListener('click', function() {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        renderCalendar(currentMonth, currentYear);
+    });
+    
+    // Form submission
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const purpose = purposeSelect.value;
+        const selectedDate = selectedDateDisplay.textContent.replace('Selected Date: ', '');
+        const selectedTime = timeSelect.value;
+        
+        if (!name || !email) {
+            alert('Please enter your name and email.');
+            return;
+        }
+        
+        // Here you would normally send the data to a server
+        // For demonstration, we'll just show a confirmation
+        alert(`Appointment booked!\n\nDate: ${selectedDate}\nTime: ${selectedTime}\nName: ${name}\nEmail: ${email}\nPurpose: ${purpose}\n\nThank you for booking with Kei Truck Design Studio.`);
+        
+        // Reset form
+        nameInput.value = '';
+        emailInput.value = '';
+        appointmentForm.style.display = 'none';
+        
+        // Reset calendar selection
+        document.querySelectorAll('.date-cell').forEach(cell => {
+            cell.style.backgroundColor = '';
+            cell.style.color = cell.classList.contains('disabled') ? '#ccc' : '';
+        });
+    });
+});
+</script>
+    
     <section class="news-section">
         <h2>News</h2>
         <div class="news-item">
