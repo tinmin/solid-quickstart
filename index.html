@@ -117,6 +117,104 @@
                 font-size: 8vw;
             }
         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+
+        .calculator-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #f8f8f8;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-group {
+            margin: 1rem 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #000;
+            color: white;
+            display: none;
+        }
+
+        .result.visible {
+            display: block;
+        }
+
+        .japanese-text {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .calculator-container {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
