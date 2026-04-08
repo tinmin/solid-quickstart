@@ -3,728 +3,770 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kei Truck | Japanese Design Studio</title>
+    <title>CYCLE · WORKS</title>
     <style>
+        /* Core Styles */
+        :root {
+            --bg: #f8f8f8;
+            --text: #222222;
+            --muted: #777777;
+            --accent: #505050;
+            --border: #e5e5e5;
+            --spacing-unit: 8px;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Helvetica Neue", sans-serif;
         }
-
+        
         body {
-            background: #ffffff;
-            color: #000000;
-            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.4;
+            font-size: 14px;
+            letter-spacing: 0.01em;
+            -webkit-font-smoothing: antialiased;
         }
-
+        
+        img {
+            max-width: 100%;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+        
+        h1 {
+            font-size: 1.2rem;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+        
+        h2 {
+            font-size: 1rem;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--text);
+            margin: calc(var(--spacing-unit) * 2) auto 0;
+        }
+        
+        h3 {
+            font-size: 0.9rem;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            letter-spacing: 0.05em;
+        }
+        
+        p {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+        
+        a {
+            color: var(--text);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        a:hover {
+            opacity: 0.7;
+        }
+        
+        /* Layout */
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: calc(var(--spacing-unit) * 12) 0;
+        }
+        
+        .section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: calc(var(--spacing-unit) * 6);
+        }
+        
+        /* Header */
         header {
-            padding: 2rem;
+            padding: calc(var(--spacing-unit) * 4) 0;
             position: fixed;
             width: 100%;
-            top: 0;
+            background: rgba(248, 248, 248, 0.95);
             z-index: 100;
-            mix-blend-mode: difference;
         }
-
-        nav {
+        
+        .header-inner {
             display: flex;
             justify-content: space-between;
-            color: white;
+            align-items: center;
         }
-
-        .menu-items {
+        
+        .logo {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
             display: flex;
-            gap: 2rem;
             list-style: none;
         }
-
+        
+        nav li {
+            margin-left: calc(var(--spacing-unit) * 5);
+        }
+        
+        nav a {
+            color: var(--text);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Hero Section */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10vw;
-        }
-
-        .hero h1 {
-            font-size: 4vw;
-            font-weight: 300;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-        }
-
-        .japanese-text {
-            font-size: 1rem;
-            margin-top: 1rem;
-            opacity: 0.7;
-        }
-
-        .news-section {
-            padding: 10vh 10vw;
-            background: #f8f8f8;
-        }
-
-        .news-item {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .date {
-            font-size: 0.9rem;
-            opacity: 0.5;
-            margin-bottom: 0.5rem;
-        }
-
-        .news-tag {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            background: #000;
-            color: white;
-            font-size: 0.8rem;
-            margin-left: 1rem;
-        }
-
-        footer {
-            padding: 5vh 10vw;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: #000;
-            text-decoration: none;
-        }
-
-        @media (max-width: 768px) {
-            .menu-items {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 8vw;
-            }
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Helvetica Neue", sans-serif;
-        }
-
-        body {
-            background: #ffffff;
-            color: #000000;
-            line-height: 1.7;
-            padding: 2rem;
-        }
-
-        .calculator-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: #f8f8f8;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            background: white;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .checkbox-group {
-            margin: 1rem 0;
-        }
-
-        .checkbox-item {
+            height: 90vh;
             display: flex;
             align-items: center;
-            margin: 0.5rem 0;
+            position: relative;
+            overflow: hidden;
         }
-
-        .checkbox-item input[type="checkbox"] {
-            margin-right: 0.5rem;
+        
+        .hero-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        button {
-            background: #000;
+        
+        .hero-title {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .hero-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 4);
+            background: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        
+        /* Services Section */
+        .service-item {
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+        
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            padding-bottom: calc(var(--spacing-unit) * 1);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .service-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .service-price {
+            font-size: 0.8rem;
+        }
+        
+        /* Bikes Section */
+        .bike-card {
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+        
+        .bike-img {
+            aspect-ratio: 4/3;
+            background-color: #f0f0f0;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #e0e0e0;
+        }
+        
+        .bike-info {
+            padding-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .bike-title {
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .bike-specs {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            letter-spacing: 0.03em;
+        }
+        
+        .bike-price {
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+        
+        /* Process Section */
+        .process {
+            background-color: #f2f2f2;
+        }
+        
+        .process-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .process-item {
+            width: calc(20% - 16px);
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+        
+        .process-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid var(--text);
+            border-radius: 50%;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .process-name {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+        
+        .process-desc {
+            font-size: 0.75rem;
+        }
+        
+        /* Contact Section */
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-unit) * 8);
+            align-items: start;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            border: 1px solid var(--border);
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.8rem;
+        }
+        
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            background: var(--text);
             color: white;
             border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             cursor: pointer;
-            width: 100%;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s ease;
         }
-
-        button:hover {
+        
+        .contact-form button:hover {
             opacity: 0.8;
         }
-
-        .result {
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #000;
-            color: white;
-            display: none;
+        
+        .contact-info {
+            padding-left: calc(var(--spacing-unit) * 4);
+            border-left: 1px solid var(--border);
         }
-
-        .result.visible {
-            display: block;
+        
+        .contact-item {
+            margin-bottom: calc(var(--spacing-unit) * 4);
         }
-
-        .japanese-text {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 0.3rem;
+        
+        .contact-item h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: calc(var(--spacing-unit) * 1);
         }
-
+        
+        .contact-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        /* Footer */
+        footer {
+            padding: calc(var(--spacing-unit) * 8) 0;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+        
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-left: calc(var(--spacing-unit) * 3);
+        }
+        
+        .footer-links a {
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
+            nav {
+                display: none;
             }
-
-            .calculator-container {
-                padding: 1rem;
+            
+            .hero {
+                height: 80vh;
+            }
+            
+            .process-item {
+                width: calc(50% - 16px);
+            }
+            
+            .contact-inner {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                border-left: none;
+                padding-left: 0;
+                margin-top: calc(var(--spacing-unit) * 6);
+            }
+            
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: calc(var(--spacing-unit) * 3);
+            }
+            
+            .footer-links li {
+                margin: 0 calc(var(--spacing-unit) * 1.5);
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <nav>
-            <div class="logo">Kei Truck</div>
-            <ul class="menu-items">
-                <li>WHO WE ARE</li>
-                <li>WHAT WE DO</li>
-                <li>OUR WORKS</li>
-                <li>CONTACT</li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">Cycle · Works</a>
+                <nav>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#bikes">Inventory</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
-
+    
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>the next movement.</h1>
-        <p>Kei Truck is a design studio that creates meaningful experiences through innovative mobility solutions.</p>
-        <p class="japanese-text">ケイトラックは、革新的なモビリティソリューションを通じて意味のある体験を創造するデザインスタジオです。</p>
-    </section>
-<div class="calculator-container">
-        <h1>Moving Cost Calculator</h1>
-        <p class="japanese-text">引越し費用計算機</p>
-
-        <form id="movingCalculator">
-            <div class="form-group">
-                <label>Distance (km)</label>
-                <input type="number" id="distance" min="1" required>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Bicycle Restoration</h1>
+                <div class="hero-subtitle">Quality repairs & restored bicycles</div>
+                <a href="#contact" class="btn">Schedule Service</a>
             </div>
-
-            <div class="form-group">
-                <label>Floor Level (Current Location)</label>
-                <select id="floorLevel">
-                    <option value="1">Ground Floor</option>
-                    <option value="1.1">1st Floor</option>
-                    <option value="1.2">2nd Floor</option>
-                    <option value="1.3">3rd Floor or Higher</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Moving Volume</label>
-                <select id="movingVolume">
-                    <option value="1">Small (Single Room)</option>
-                    <option value="1.5">Medium (1-2 Rooms)</option>
-                    <option value="2">Large (2+ Rooms)</option>
-                </select>
-            </div>
-
-            <div class="checkbox-group">
-                <h3>Additional Services</h3>
-                <div class="checkbox-item">
-                    <input type="checkbox" id="packing" value="5000">
-                    <label for="packing">Packing Service (¥5,000)</label>
-                </div>
-                <div class="checkbox-item">
-                    <input type="checkbox" id="assembly" value="3000">
-                    <label for="assembly">Furniture Assembly (¥3,000)</label>
-                </div>
-                <div class="checkbox-item">
-                    <input type="checkbox" id="weekend" value="2000">
-                    <label for="weekend">Weekend Service (¥2,000)</label>
-                </div>
-            </div>
-
-            <button type="submit">Calculate Cost</button>
-        </form>
-
-        <div class="result" id="result">
-            <h2>Estimated Cost</h2>
-            <p id="costResult"></p>
-            <p class="japanese-text">※ This is an estimate. Final price may vary.</p>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('movingCalculator').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Base rate per kilometer
-            const baseRate = 1000; // ¥1,000 per km
-
-            // Get values
-            const distance = parseFloat(document.getElementById('distance').value);
-            const floorLevel = parseFloat(document.getElementById('floorLevel').value);
-            const movingVolume = parseFloat(document.getElementById('movingVolume').value);
-
-            // Calculate base cost
-            let totalCost = distance * baseRate;
-
-            // Apply multipliers
-            totalCost *= floorLevel;
-            totalCost *= movingVolume;
-
-            // Add additional services
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-            checkboxes.forEach(checkbox => {
-                totalCost += parseFloat(checkbox.value);
-            });
-
-            // Round to nearest 1000 yen
-            totalCost = Math.ceil(totalCost / 1000) * 1000;
-
-            // Display result
-            const resultDiv = document.getElementById('result');
-            const costResult = document.getElementById('costResult');
-            resultDiv.classList.add('visible');
-            costResult.textContent = `¥${totalCost.toLocaleString()}`;
-
-            // Scroll to result
-            resultDiv.scrollIntoView({ behavior: 'smooth' });
-        });
-                </script>
-<script>
-// Calendar Appointment Booking Script for Kei Truck
-document.addEventListener('DOMContentLoaded', function() {
-    // Create the appointment booking container
-    const appointmentSection = document.createElement('div');
-    appointmentSection.className = 'appointment-section';
-    appointmentSection.style.maxWidth = '600px';
-    appointmentSection.style.margin = '40px auto';
-    appointmentSection.style.padding = '20px';
-    appointmentSection.style.fontFamily = 'sans-serif';
-    
-    // Add the section title
-    const sectionTitle = document.createElement('h2');
-    sectionTitle.textContent = 'Book a Consultation';
-    sectionTitle.style.fontSize = '24px';
-    sectionTitle.style.marginBottom = '20px';
-    sectionTitle.style.fontWeight = '500';
-    appointmentSection.appendChild(sectionTitle);
-    
-    // Add Japanese subtitle
-    const japaneseTitle = document.createElement('p');
-    japaneseTitle.textContent = 'コンサルテーションの予約';
-    japaneseTitle.style.fontSize = '16px';
-    japaneseTitle.style.marginBottom = '30px';
-    japaneseTitle.style.fontWeight = '300';
-    appointmentSection.appendChild(japaneseTitle);
-    
-    // Create the calendar container
-    const calendarContainer = document.createElement('div');
-    calendarContainer.className = 'calendar-container';
-    appointmentSection.appendChild(calendarContainer);
-    
-    // Current date for calendar initialization
-    const currentDate = new Date();
-    let currentMonth = currentDate.getMonth();
-    let currentYear = currentDate.getFullYear();
-    
-    // Month names
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
-                        'July', 'August', 'September', 'October', 'November', 'December'];
-    
-    // Calendar header
-    const calendarHeader = document.createElement('div');
-    calendarHeader.className = 'calendar-header';
-    calendarHeader.style.display = 'flex';
-    calendarHeader.style.justifyContent = 'space-between';
-    calendarHeader.style.alignItems = 'center';
-    calendarHeader.style.marginBottom = '15px';
-    
-    // Previous month button
-    const prevMonthBtn = document.createElement('button');
-    prevMonthBtn.innerHTML = '&laquo;';
-    prevMonthBtn.style.padding = '5px 10px';
-    prevMonthBtn.style.backgroundColor = 'transparent';
-    prevMonthBtn.style.border = 'none';
-    prevMonthBtn.style.cursor = 'pointer';
-    prevMonthBtn.style.fontSize = '16px';
-    calendarHeader.appendChild(prevMonthBtn);
-    
-    // Month and year display
-    const monthYearDisplay = document.createElement('span');
-    monthYearDisplay.id = 'month-year-display';
-    monthYearDisplay.style.fontWeight = '500';
-    calendarHeader.appendChild(monthYearDisplay);
-    
-    // Next month button
-    const nextMonthBtn = document.createElement('button');
-    nextMonthBtn.innerHTML = '&raquo;';
-    nextMonthBtn.style.padding = '5px 10px';
-    nextMonthBtn.style.backgroundColor = 'transparent';
-    nextMonthBtn.style.border = 'none';
-    nextMonthBtn.style.cursor = 'pointer';
-    nextMonthBtn.style.fontSize = '16px';
-    calendarHeader.appendChild(nextMonthBtn);
-    
-    calendarContainer.appendChild(calendarHeader);
-    
-    // Calendar grid
-    const calendarGrid = document.createElement('div');
-    calendarGrid.className = 'calendar-grid';
-    calendarGrid.style.display = 'grid';
-    calendarGrid.style.gridTemplateColumns = 'repeat(7, 1fr)';
-    calendarGrid.style.gap = '5px';
-    calendarContainer.appendChild(calendarGrid);
-    
-    // Day names row
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    dayNames.forEach(day => {
-        const dayNameCell = document.createElement('div');
-        dayNameCell.className = 'day-name';
-        dayNameCell.textContent = day;
-        dayNameCell.style.textAlign = 'center';
-        dayNameCell.style.padding = '5px';
-        dayNameCell.style.fontWeight = '500';
-        dayNameCell.style.fontSize = '14px';
-        calendarGrid.appendChild(dayNameCell);
-    });
-    
-    // Appointment form section
-    const appointmentForm = document.createElement('div');
-    appointmentForm.className = 'appointment-form';
-    appointmentForm.style.marginTop = '30px';
-    appointmentForm.style.display = 'none';
-    
-    const selectedDateDisplay = document.createElement('p');
-    selectedDateDisplay.id = 'selected-date';
-    selectedDateDisplay.style.marginBottom = '20px';
-    selectedDateDisplay.style.fontWeight = '500';
-    appointmentForm.appendChild(selectedDateDisplay);
-    
-    // Time selection
-    const timeLabel = document.createElement('label');
-    timeLabel.textContent = 'Select Time:';
-    timeLabel.style.display = 'block';
-    timeLabel.style.marginBottom = '8px';
-    appointmentForm.appendChild(timeLabel);
-    
-    const timeSelect = document.createElement('select');
-    timeSelect.id = 'time-select';
-    timeSelect.style.width = '100%';
-    timeSelect.style.padding = '8px';
-    timeSelect.style.marginBottom = '20px';
-    timeSelect.style.borderRadius = '0';
-    timeSelect.style.border = '1px solid #ddd';
-    
-    // Add time options - 9 AM to 5 PM
-    for (let hour = 9; hour <= 17; hour++) {
-        const option = document.createElement('option');
-        option.value = hour < 12 ? `${hour}:00 AM` : hour === 12 ? `${hour}:00 PM` : `${hour-12}:00 PM`;
-        option.textContent = hour < 12 ? `${hour}:00 AM` : hour === 12 ? `${hour}:00 PM` : `${hour-12}:00 PM`;
-        timeSelect.appendChild(option);
-    }
-    appointmentForm.appendChild(timeSelect);
-    
-    // Name input
-    const nameLabel = document.createElement('label');
-    nameLabel.textContent = 'Your Name:';
-    nameLabel.style.display = 'block';
-    nameLabel.style.marginBottom = '8px';
-    appointmentForm.appendChild(nameLabel);
-    
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.id = 'name-input';
-    nameInput.style.width = '100%';
-    nameInput.style.padding = '8px';
-    nameInput.style.marginBottom = '15px';
-    nameInput.style.borderRadius = '0';
-    nameInput.style.border = '1px solid #ddd';
-    appointmentForm.appendChild(nameInput);
-    
-    // Email input
-    const emailLabel = document.createElement('label');
-    emailLabel.textContent = 'Email:';
-    emailLabel.style.display = 'block';
-    emailLabel.style.marginBottom = '8px';
-    appointmentForm.appendChild(emailLabel);
-    
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.id = 'email-input';
-    emailInput.style.width = '100%';
-    emailInput.style.padding = '8px';
-    emailInput.style.marginBottom = '15px';
-    emailInput.style.borderRadius = '0';
-    emailInput.style.border = '1px solid #ddd';
-    appointmentForm.appendChild(emailInput);
-    
-    // Purpose dropdown
-    const purposeLabel = document.createElement('label');
-    purposeLabel.textContent = 'Purpose:';
-    purposeLabel.style.display = 'block';
-    purposeLabel.style.marginBottom = '8px';
-    appointmentForm.appendChild(purposeLabel);
-    
-    const purposeSelect = document.createElement('select');
-    purposeSelect.id = 'purpose-select';
-    purposeSelect.style.width = '100%';
-    purposeSelect.style.padding = '8px';
-    purposeSelect.style.marginBottom = '25px';
-    purposeSelect.style.borderRadius = '0';
-    purposeSelect.style.border = '1px solid #ddd';
-    
-    const purposes = [
-        'Design Consultation',
-        'Moving Service',
-        'Mobility Solution',
-        'Partnership Inquiry',
-        'Other'
-    ];
-    
-    purposes.forEach(purpose => {
-        const option = document.createElement('option');
-        option.value = purpose;
-        option.textContent = purpose;
-        purposeSelect.appendChild(option);
-    });
-    appointmentForm.appendChild(purposeSelect);
-    
-    // Submit button
-    const submitBtn = document.createElement('button');
-    submitBtn.textContent = 'Book Appointment';
-    submitBtn.style.backgroundColor = '#000';
-    submitBtn.style.color = '#fff';
-    submitBtn.style.border = 'none';
-    submitBtn.style.padding = '12px 20px';
-    submitBtn.style.cursor = 'pointer';
-    submitBtn.style.width = '100%';
-    submitBtn.style.fontSize = '16px';
-    appointmentForm.appendChild(submitBtn);
-    
-    calendarContainer.appendChild(appointmentForm);
-    
-    // Insert the appointment section into the page
-    const targetElement = document.querySelector('.News, #news, [class*="news"]') || 
-                        document.querySelector('body > *:nth-child(3)');
-    if (targetElement) {
-        targetElement.parentNode.insertBefore(appointmentSection, targetElement);
-    } else {
-        document.body.appendChild(appointmentSection);
-    }
-    
-    // Calendar functionality
-    function renderCalendar(month, year) {
-        // Update month and year display
-        monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
-        
-        // Clear previous dates
-        const dateCells = calendarGrid.querySelectorAll('.date-cell');
-        dateCells.forEach(cell => cell.remove());
-        
-        // Calculate first day of month
-        const firstDay = new Date(year, month, 1).getDay();
-        
-        // Number of days in month
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        
-        // Create date cells
-        for (let i = 0; i < firstDay; i++) {
-            const emptyCell = document.createElement('div');
-            emptyCell.className = 'date-cell empty';
-            emptyCell.style.padding = '10px';
-            emptyCell.style.textAlign = 'center';
-            calendarGrid.appendChild(emptyCell);
-        }
-        
-        for (let day = 1; day <= daysInMonth; day++) {
-            const dateCell = document.createElement('div');
-            dateCell.className = 'date-cell';
-            dateCell.textContent = day;
-            dateCell.setAttribute('data-date', `${year}-${month+1}-${day}`);
-            dateCell.style.padding = '10px';
-            dateCell.style.textAlign = 'center';
-            dateCell.style.cursor = 'pointer';
-            dateCell.style.border = '1px solid #eee';
-            
-            // Disable past dates
-            const cellDate = new Date(year, month, day);
-            if (cellDate < new Date().setHours(0,0,0,0)) {
-                dateCell.style.color = '#ccc';
-                dateCell.style.cursor = 'default';
-                dateCell.classList.add('disabled');
-            } else {
-                // Add click event for available dates
-                dateCell.addEventListener('click', function() {
-                    // Remove selection from all cells
-                    document.querySelectorAll('.date-cell').forEach(cell => {
-                        cell.style.backgroundColor = '';
-                        cell.style.color = cell.classList.contains('disabled') ? '#ccc' : '';
-                    });
-                    
-                    // Highlight selected cell
-                    this.style.backgroundColor = '#000';
-                    this.style.color = '#fff';
-                    
-                    // Show appointment form and update selected date
-                    appointmentForm.style.display = 'block';
-                    const dateStr = this.getAttribute('data-date').split('-');
-                    const formattedDate = `${monthNames[parseInt(dateStr[1])-1]} ${dateStr[2]}, ${dateStr[0]}`;
-                    selectedDateDisplay.textContent = `Selected Date: ${formattedDate}`;
-                    
-                    // Smooth scroll to form
-                    appointmentForm.scrollIntoView({ behavior: 'smooth' });
-                });
-            }
-            
-            calendarGrid.appendChild(dateCell);
-        }
-    }
-    
-    // Initialize calendar
-    renderCalendar(currentMonth, currentYear);
-    
-    // Previous month button event
-    prevMonthBtn.addEventListener('click', function() {
-        currentMonth--;
-        if (currentMonth < 0) {
-            currentMonth = 11;
-            currentYear--;
-        }
-        renderCalendar(currentMonth, currentYear);
-    });
-    
-    // Next month button event
-    nextMonthBtn.addEventListener('click', function() {
-        currentMonth++;
-        if (currentMonth > 11) {
-            currentMonth = 0;
-            currentYear++;
-        }
-        renderCalendar(currentMonth, currentYear);
-    });
-    
-    // Form submission
-    submitBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const purpose = purposeSelect.value;
-        const selectedDate = selectedDateDisplay.textContent.replace('Selected Date: ', '');
-        const selectedTime = timeSelect.value;
-        
-        if (!name || !email) {
-            alert('Please enter your name and email.');
-            return;
-        }
-        
-        // Here you would normally send the data to a server
-        // For demonstration, we'll just show a confirmation
-        alert(`Appointment booked!\n\nDate: ${selectedDate}\nTime: ${selectedTime}\nName: ${name}\nEmail: ${email}\nPurpose: ${purpose}\n\nThank you for booking with Kei Truck Design Studio.`);
-        
-        // Reset form
-        nameInput.value = '';
-        emailInput.value = '';
-        appointmentForm.style.display = 'none';
-        
-        // Reset calendar selection
-        document.querySelectorAll('.date-cell').forEach(cell => {
-            cell.style.backgroundColor = '';
-            cell.style.color = cell.classList.contains('disabled') ? '#ccc' : '';
-        });
-    });
-});
-</script>
-    
-    <section class="news-section">
-        <h2>News</h2>
-        <div class="news-item">
-            <div class="date">2025.12.30<span class="news-tag">new</span></div>
-            <p>Kei Truck's latest mobility solution wins International Design Excellence Award 2025.</p>
-        </div>
-        <div class="news-item">
-            <div class="date">2025.11.15</div>
-            <p>Opening our new design studio in Shibuya,Tokyo.</p>
-        </div>
-        <div class="news-item">
-            <div class="date">2025.10.01</div>
-            <p>Launching our sustainable mobility initiative for urban environments.</p>
         </div>
     </section>
-
+    
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Services</h2>
+            <div class="section-inner">
+                <div class="grid">
+                    <div>
+                        <div class="service-item">
+                            <div class="service-header">
+                                <h3 class="service-title">Basic Tune-Up</h3>
+                                <span class="service-price">¥4,500</span>
+                            </div>
+                            <p>Safety check, gear and brake adjustment, tire inflation, chain lubrication.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-header">
+                                <h3 class="service-title">Complete Overhaul</h3>
+                                <span class="service-price">¥12,000</span>
+                            </div>
+                            <p>Disassembly, cleaning, bearing adjustment, full tune-up and safety check.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-header">
+                                <h3 class="service-title">Wheel Truing</h3>
+                                <span class="service-price">¥3,500</span>
+                            </div>
+                            <p>Precise wheel alignment to eliminate wobbles and improve performance.</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="service-item">
+                            <div class="service-header">
+                                <h3 class="service-title">Flat Repair</h3>
+                                <span class="service-price">¥2,000</span>
+                            </div>
+                            <p>Tube replacement or repair, inspection for embedded objects, proper inflation.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-header">
+                                <h3 class="service-title">Brake Service</h3>
+                                <span class="service-price">¥3,500</span>
+                            </div>
+                            <p>Brake adjustment, pad replacement, cable lubrication for optimal stopping.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <div class="service-header">
+                                <h3 class="service-title">Custom Work</h3>
+                                <span class="service-price">By Quote</span>
+                            </div>
+                            <p>Specialized repairs for unique issues or vintage bicycles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bikes Section -->
+    <section id="bikes" class="bikes">
+        <div class="container">
+            <h2>Available Bicycles</h2>
+            <div class="section-inner">
+                <div class="grid">
+                    <!-- Bike 1 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Vintage Raleigh</h3>
+                            <div class="bike-specs">Steel Frame · 54cm · 3×7 Speed</div>
+                            <div class="bike-price">¥35,000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 2 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Trek Hybrid</h3>
+                            <div class="bike-specs">Aluminum · 17" · 3×9 Speed</div>
+                            <div class="bike-price">¥48,000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 3 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Specialized Hardrock</h3>
+                            <div class="bike-specs">MTB · 18" · 3×8 Speed</div>
+                            <div class="bike-price">¥29,000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 4 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Cannondale Road</h3>
+                            <div class="bike-specs">Carbon Fork · 56cm · 2×10</div>
+                            <div class="bike-price">¥59,500</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 5 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Fixed Gear</h3>
+                            <div class="bike-specs">Steel · 52cm · Fixed/Free</div>
+                            <div class="bike-price">¥22,000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 6 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Giant City Bike</h3>
+                            <div class="bike-specs">Step-Through · M · 7 Speed</div>
+                            <div class="bike-price">¥38,000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 7 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Surly Cross-Check</h3>
+                            <div class="bike-specs">Steel · 54cm · 2×10 Speed</div>
+                            <div class="bike-price">¥65,000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 8 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Schwinn Cruiser</h3>
+                            <div class="bike-specs">One Size · Single Speed</div>
+                            <div class="bike-price">¥32,000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 9 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Mongoose MTB</h3>
+                            <div class="bike-specs">Large · 3×8 Speed</div>
+                            <div class="bike-price">¥27,500</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bike 10 -->
+                    <div class="bike-card">
+                        <div class="bike-img">自転車</div>
+                        <div class="bike-info">
+                            <h3 class="bike-title">Diamondback Hybrid</h3>
+                            <div class="bike-specs">Medium · 3×9 Speed</div>
+                            <div class="bike-price">¥42,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2>Our Process</h2>
+            <div class="process-inner section-inner">
+                <div class="process-item">
+                    <div class="process-number">1</div>
+                    <div class="process-name">Acquisition</div>
+                    <div class="process-desc">Sourcing quality frames through donations and estates</div>
+                </div>
+                
+                <div class="process-item">
+                    <div class="process-number">2</div>
+                    <div class="process-name">Assessment</div>
+                    <div class="process-desc">Comprehensive evaluation of condition and needs</div>
+                </div>
+                
+                <div class="process-item">
+                    <div class="process-number">3</div>
+                    <div class="process-name">Restoration</div>
+                    <div class="process-desc">Careful repair and component replacement</div>
+                </div>
+                
+                <div class="process-item">
+                    <div class="process-number">4</div>
+                    <div class="process-name">Quality</div>
+                    <div class="process-desc">Rigorous testing to ensure safety and performance</div>
+                </div>
+                
+                <div class="process-item">
+                    <div class="process-number">5</div>
+                    <div class="process-name">Delivery</div>
+                    <div class="process-desc">Final adjustments and customer handover</div>
+                </div>
+            </div>
+            
+            <div class="section-inner" style="margin-top: 48px; text-align: center;">
+                <p style="max-width: 600px; margin: 0 auto;">
+                    Founded in 2020, Cycle · Works is dedicated to giving old bicycles new life. Every refurbished bike undergoes comprehensive inspection and service before being offered for sale with our 30-day warranty.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="section-inner">
+                <div class="contact-inner">
+                    <div class="contact-form">
+                        <form>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                            
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                            
+                            <label for="inquiry">Inquiry Type</label>
+                            <select id="inquiry" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="repair">Repair Service</option>
+                                <option value="purchase">Bike Purchase</option>
+                                <option value="question">General Question</option>
+                            </select>
+                            
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                            
+                            <button type="submit">Send</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>Location</h3>
+                            <div class="contact-text">
+                                123 Pedal Street<br>
+                                Bikeville, BK 12345
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3>Hours</h3>
+                            <div class="contact-text">
+                                Tuesday – Friday: 10:00–18:00<br>
+                                Saturday: 09:00–17:00<br>
+                                Sunday & Monday: Closed
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3>Contact</h3>
+                            <div class="contact-text">
+                                Tel: (555) 123-4567<br>
+                                Email: info@cycleworks.co
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
     <footer>
-        <div class="address">
-            <h3>Address</h3>
-            <p>4F Shibuya Building<br>
-            1-23-45 Toronto<br>
-            Toronto Ontario<br>
-            Canada</p>
-        </div>
-        <div class="contact">
-            <h3>Contact</h3>
-            <p>647 856 8029</p>
-            <div class="social-links">
-                <a href="#">Instagram</a>
-                <a href="#">email</a>
-                <a href="#">LinkedIn</a>
+        <div class="container">
+            <div class="footer-inner">
+                <div>© 2026 Cycle · Works</div>
+                <ul class="footer-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#bikes">Inventory</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Simple form handler
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message. We will respond shortly.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
-<!--
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>Solid App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-
-    <script src="/src/index.tsx" type="module"></script>
-  </body>
-</html>
-
--->
