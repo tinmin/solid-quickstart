@@ -1,772 +1,792 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYCLE · WORKS</title>
-    <style>
-        /* Core Styles */
-        :root {
-            --bg: #f8f8f8;
-            --text: #222222;
-            --muted: #777777;
-            --accent: #505050;
-            --border: #e5e5e5;
-            --spacing-unit: 8px;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.4;
-            font-size: 14px;
-            letter-spacing: 0.01em;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        img {
-            max-width: 100%;
-        }
-        
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 400;
-            letter-spacing: 0.03em;
-        }
-        
-        h1 {
-            font-size: 1.2rem;
-            margin-bottom: calc(var(--spacing-unit) * 3);
-        }
-        
-        h2 {
-            font-size: 1rem;
-            margin-bottom: calc(var(--spacing-unit) * 4);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-align: center;
-            position: relative;
-        }
-        
-        h2:after {
-            content: '';
-            display: block;
-            width: 24px;
-            height: 1px;
-            background: var(--text);
-            margin: calc(var(--spacing-unit) * 2) auto 0;
-        }
-        
-        h3 {
-            font-size: 0.9rem;
-            margin-bottom: calc(var(--spacing-unit) * 1);
-            letter-spacing: 0.05em;
-        }
-        
-        p {
-            margin-bottom: calc(var(--spacing-unit) * 2);
-            font-size: 0.85rem;
-            line-height: 1.5;
-            color: var(--muted);
-        }
-        
-        a {
-            color: var(--text);
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-        
-        a:hover {
-            opacity: 0.7;
-        }
-        
-        /* Layout */
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        section {
-            padding: calc(var(--spacing-unit) * 12) 0;
-        }
-        
-        .section-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: calc(var(--spacing-unit) * 6);
-        }
-        
-        /* Header */
-        header {
-            padding: calc(var(--spacing-unit) * 4) 0;
-            position: fixed;
-            width: 100%;
-            background: rgba(248, 248, 248, 0.95);
-            z-index: 100;
-        }
-        
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav li {
-            margin-left: calc(var(--spacing-unit) * 5);
-        }
-        
-        nav a {
-            color: var(--text);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .hero-title {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: calc(var(--spacing-unit) * 2);
-        }
-        
-        .hero-subtitle {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--muted);
-            margin-bottom: calc(var(--spacing-unit) * 6);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 4);
-            background: transparent;
-            border: 1px solid var(--text);
-            color: var(--text);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.2s ease;
-        }
-        
-        .btn:hover {
-            background: var(--text);
-            color: var(--bg);
-        }
-        
-        /* Services Section */
-        .service-item {
-            margin-bottom: calc(var(--spacing-unit) * 6);
-        }
-        
-        .service-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: calc(var(--spacing-unit) * 1);
-            padding-bottom: calc(var(--spacing-unit) * 1);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .service-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .service-price {
-            font-size: 0.8rem;
-        }
-        
-        /* Bikes Section */
-        .bike-card {
-            margin-bottom: calc(var(--spacing-unit) * 4);
-        }
-        
-        .bike-img {
-            aspect-ratio: 4/3;
-            background-color: #f0f0f0;
-            margin-bottom: calc(var(--spacing-unit) * 2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #e0e0e0;
-        }
-        
-        .bike-info {
-            padding-bottom: calc(var(--spacing-unit) * 2);
-        }
-        
-        .bike-title {
-            font-size: 0.85rem;
-            margin-bottom: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .bike-specs {
-            font-size: 0.7rem;
-            color: var(--muted);
-            margin-bottom: calc(var(--spacing-unit) * 1);
-            letter-spacing: 0.03em;
-        }
-        
-        .bike-price {
-            font-size: 0.85rem;
-            font-weight: 400;
-        }
-        
-        /* Process Section */
-        .process {
-            background-color: #f2f2f2;
-        }
-        
-        .process-inner {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        
-        .process-item {
-            width: calc(20% - 16px);
-            text-align: center;
-            margin-bottom: calc(var(--spacing-unit) * 4);
-        }
-        
-        .process-number {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            border: 1px solid var(--text);
-            border-radius: 50%;
-            margin-bottom: calc(var(--spacing-unit) * 2);
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-        }
-        
-        .process-name {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: calc(var(--spacing-unit) * 1);
-        }
-        
-        .process-desc {
-            font-size: 0.75rem;
-        }
-        
-        /* Contact Section */
-        .contact-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: calc(var(--spacing-unit) * 8);
-            align-items: start;
-        }
-        
-        .contact-form label {
-            display: block;
-            margin-bottom: calc(var(--spacing-unit) * 1);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form select {
-            width: 100%;
-            padding: calc(var(--spacing-unit) * 1.5);
-            margin-bottom: calc(var(--spacing-unit) * 3);
-            border: 1px solid var(--border);
-            background: transparent;
-            font-family: inherit;
-            font-size: 0.8rem;
-        }
-        
-        .contact-form textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        
-        .contact-form button {
-            background: var(--text);
-            color: white;
-            border: none;
-            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-        
-        .contact-form button:hover {
-            opacity: 0.8;
-        }
-        
-        .contact-info {
-            padding-left: calc(var(--spacing-unit) * 4);
-            border-left: 1px solid var(--border);
-        }
-        
-        .contact-item {
-            margin-bottom: calc(var(--spacing-unit) * 4);
-        }
-        
-        .contact-item h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: calc(var(--spacing-unit) * 1);
-        }
-        
-        .contact-text {
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-        
-        /* Footer */
-        footer {
-            padding: calc(var(--spacing-unit) * 8) 0;
-            border-top: 1px solid var(--border);
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-        
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-left: calc(var(--spacing-unit) * 3);
-        }
-        
-        .footer-links a {
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.7rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-            
-            .hero {
-                height: 80vh;
-            }
-            
-            .process-item {
-                width: calc(50% - 16px);
-            }
-            
-            .contact-inner {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                border-left: none;
-                padding-left: 0;
-                margin-top: calc(var(--spacing-unit) * 6);
-            }
-            
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-links {
-                margin-top: calc(var(--spacing-unit) * 3);
-            }
-            
-            .footer-links li {
-                margin: 0 calc(var(--spacing-unit) * 1.5);
-            }
-            
-            .grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYCLE · WORKS</title>
+<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.5.0/default/snipcart.css" />
+<style>
+/* Core Styles */
+:root {
+--bg: #f8f8f8;
+--text: #222222;
+--muted: #777777;
+--accent: #505050;
+--border: #e5e5e5;
+--spacing-unit: 8px;
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+background: var(--bg);
+color: var(--text);
+line-height: 1.4;
+font-size: 14px;
+letter-spacing: 0.01em;
+-webkit-font-smoothing: antialiased;
+}
+img {
+max-width: 100%;
+}
+/* Typography */
+h1, h2, h3, h4 {
+font-weight: 400;
+letter-spacing: 0.03em;
+}
+h1 {
+font-size: 1.2rem;
+margin-bottom: calc(var(--spacing-unit) * 3);
+}
+h2 {
+font-size: 1rem;
+margin-bottom: calc(var(--spacing-unit) * 4);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+text-align: center;
+position: relative;
+}
+h2:after {
+content: '';
+display: block;
+width: 24px;
+height: 1px;
+background: var(--text);
+margin: calc(var(--spacing-unit) * 2) auto 0;
+}
+h3 {
+font-size: 0.9rem;
+margin-bottom: calc(var(--spacing-unit) * 1);
+letter-spacing: 0.05em;
+}
+p {
+margin-bottom: calc(var(--spacing-unit) * 2);
+font-size: 0.85rem;
+line-height: 1.5;
+color: var(--muted);
+}
+a {
+color: var(--text);
+text-decoration: none;
+transition: opacity 0.2s ease;
+}
+a:hover {
+opacity: 0.7;
+}
+/* Layout */
+.container {
+width: 85%;
+max-width: 1200px;
+margin: 0 auto;
+}
+section {
+padding: calc(var(--spacing-unit) * 12) 0;
+}
+.section-inner {
+max-width: 1000px;
+margin: 0 auto;
+}
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+gap: calc(var(--spacing-unit) * 6);
+}
+/* Header */
+header {
+padding: calc(var(--spacing-unit) * 4) 0;
+position: fixed;
+width: 100%;
+background: rgba(248, 248, 248, 0.95);
+z-index: 100;
+}
+.header-inner {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo {
+font-size: 0.95rem;
+font-weight: 500;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+}
+nav ul {
+display: flex;
+list-style: none;
+}
+nav li {
+margin-left: calc(var(--spacing-unit) * 5);
+}
+nav a {
+color: var(--text);
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+}
+/* Hero Section */
+.hero {
+height: 90vh;
+display: flex;
+align-items: center;
+position: relative;
+overflow: hidden;
+}
+.hero-content {
+text-align: center;
+max-width: 600px;
+margin: 0 auto;
+}
+.hero-title {
+font-size: 1.5rem;
+text-transform: uppercase;
+letter-spacing: 0.2em;
+margin-bottom: calc(var(--spacing-unit) * 2);
+}
+.hero-subtitle {
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 0.15em;
+color: var(--muted);
+margin-bottom: calc(var(--spacing-unit) * 6);
+}
+.btn {
+display: inline-block;
+padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 4);
+background: transparent;
+border: 1px solid var(--text);
+color: var(--text);
+font-size: 0.7rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+transition: all 0.2s ease;
+}
+.btn:hover {
+background: var(--text);
+color: var(--bg);
+}
+/* Services Section */
+.service-item {
+margin-bottom: calc(var(--spacing-unit) * 6);
+}
+.service-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+margin-bottom: calc(var(--spacing-unit) * 1);
+padding-bottom: calc(var(--spacing-unit) * 1);
+border-bottom: 1px solid var(--border);
+}
+.service-title {
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+.service-price {
+font-size: 0.8rem;
+}
+/* Bikes Section */
+.bike-card {
+margin-bottom: calc(var(--spacing-unit) * 4);
+}
+.bike-img {
+aspect-ratio: 4/3;
+background-color: #f0f0f0;
+margin-bottom: calc(var(--spacing-unit) * 2);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: #e0e0e0;
+}
+.bike-info {
+padding-bottom: calc(var(--spacing-unit) * 2);
+}
+.bike-title {
+font-size: 0.85rem;
+margin-bottom: 2px;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+.bike-specs {
+font-size: 0.7rem;
+color: var(--muted);
+margin-bottom: calc(var(--spacing-unit) * 1);
+letter-spacing: 0.03em;
+}
+.bike-price {
+font-size: 0.85rem;
+font-weight: 400;
+margin-bottom: calc(var(--spacing-unit) * 2);
+}
+.snipcart-add {
+display: inline-block;
+padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
+border: 1px solid var(--text);
+text-transform: uppercase;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+cursor: pointer;
+}
+.snipcart-add:hover {
+background: var(--text);
+color: #fff;
+transform: translateY(-2px);
+}
+/* Process Section */
+.process {
+background-color: #f2f2f2;
+}
+.process-inner {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+}
+.process-item {
+width: calc(20% - 16px);
+text-align: center;
+margin-bottom: calc(var(--spacing-unit) * 4);
+}
+.process-number {
+display: inline-block;
+width: 40px;
+height: 40px;
+line-height: 40px;
+border: 1px solid var(--text);
+border-radius: 50%;
+margin-bottom: calc(var(--spacing-unit) * 2);
+font-size: 0.8rem;
+letter-spacing: 0.05em;
+}
+.process-name {
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: calc(var(--spacing-unit) * 1);
+}
+.process-desc {
+font-size: 0.75rem;
+}
+/* Contact Section */
+.contact-inner {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: calc(var(--spacing-unit) * 8);
+align-items: start;
+}
+.contact-form label {
+display: block;
+margin-bottom: calc(var(--spacing-unit) * 1);
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+width: 100%;
+padding: calc(var(--spacing-unit) * 1.5);
+margin-bottom: calc(var(--spacing-unit) * 3);
+border: 1px solid var(--border);
+background: transparent;
+font-family: inherit;
+font-size: 0.8rem;
+}
+.contact-form textarea {
+height: 120px;
+resize: vertical;
+}
+.contact-form button {
+background: var(--text);
+color: white;
+border: none;
+padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+font-size: 0.75rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+cursor: pointer;
+transition: opacity 0.2s ease;
+}
+.contact-form button:hover {
+opacity: 0.8;
+}
+.contact-info {
+padding-left: calc(var(--spacing-unit) * 4);
+border-left: 1px solid var(--border);
+}
+.contact-item {
+margin-bottom: calc(var(--spacing-unit) * 4);
+}
+.contact-item h3 {
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: calc(var(--spacing-unit) * 1);
+}
+.contact-text {
+font-size: 0.85rem;
+line-height: 1.5;
+}
+/* Footer */
+footer {
+padding: calc(var(--spacing-unit) * 8) 0;
+border-top: 1px solid var(--border);
+font-size: 0.75rem;
+color: var(--muted);
+}
+.footer-inner {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.footer-links {
+display: flex;
+list-style: none;
+}
+.footer-links li {
+margin-left: calc(var(--spacing-unit) * 3);
+}
+.footer-links a {
+color: var(--muted);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+font-size: 0.7rem;
+}
+/* Responsive */
+@media (max-width: 768px) {
+nav {
+display: none;
+}
+.hero {
+height: 80vh;
+}
+.process-item {
+width: calc(50% - 16px);
+}
+.contact-inner {
+grid-template-columns: 1fr;
+}
+.contact-info {
+border-left: none;
+padding-left: 0;
+margin-top: calc(var(--spacing-unit) * 6);
+}
+.footer-inner {
+flex-direction: column;
+text-align: center;
+}
+.footer-links {
+margin-top: calc(var(--spacing-unit) * 3);
+}
+.footer-links li {
+margin: 0 calc(var(--spacing-unit) * 1.5);
+}
+.grid {
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-inner">
-                <a href="#" class="logo">okei · cycles</a>
-                <nav>
-                    <ul>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#bikes">Inventory</a></li>
-                        <li><a href="#process">Process</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">the everyday bicycle aesthetic</h1>
-                <div class="hero-subtitle">okei quality repairs & restored bicycles</div>
-                <a href="#contact" class="btn">Schedule Service</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <h2>Services</h2>
-            <div class="section-inner">
-                <div class="grid">
-                    <div>
-                        <div class="service-item">
-                            <div class="service-header">
-                                <h3 class="service-title">Basic Tune-Up</h3>
-                                <span class="service-price">¥4,500</span>
-                            </div>
-                            <p>Safety check, gear and brake adjustment, tire inflation, chain lubrication.</p>
-                        </div>
-                        
-                        <div class="service-item">
-                            <div class="service-header">
-                                <h3 class="service-title">Complete Overhaul</h3>
-                                <span class="service-price">¥12,000</span>
-                            </div>
-                            <p>Disassembly, cleaning, bearing adjustment, full tune-up and safety check.</p>
-                        </div>
-                        
-                        <div class="service-item">
-                            <div class="service-header">
-                                <h3 class="service-title">Wheel Truing</h3>
-                                <span class="service-price">¥3,500</span>
-                            </div>
-                            <p>Precise wheel alignment to eliminate wobbles and improve performance.</p>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="service-item">
-                            <div class="service-header">
-                                <h3 class="service-title">Flat Repair</h3>
-                                <span class="service-price">¥2,000</span>
-                            </div>
-                            <p>Tube replacement or repair, inspection for embedded objects, proper inflation.</p>
-                        </div>
-                        
-                        <div class="service-item">
-                            <div class="service-header">
-                                <h3 class="service-title">Brake Service</h3>
-                                <span class="service-price">¥3,500</span>
-                            </div>
-                            <p>Brake adjustment, pad replacement, cable lubrication for optimal stopping.</p>
-                        </div>
-                        
-                        <div class="service-item">
-                            <div class="service-header">
-                                <h3 class="service-title">Custom Work</h3>
-                                <span class="service-price">By Quote</span>
-                            </div>
-                            <p>Specialized repairs for unique issues or vintage bicycles.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Bikes Section -->
-    <section id="bikes" class="bikes">
-        <div class="container">
-            <h2>Available Bicycles</h2>
-            <div class="section-inner">
-                <div class="grid">
-                    <!-- Bike 1 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Vintage Raleigh</h3>
-                            <div class="bike-specs">Steel Frame · 54cm · 3×7 Speed</div>
-                            <div class="bike-price">¥35,000</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 2 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Trek Hybrid</h3>
-                            <div class="bike-specs">Aluminum · 17" · 3×9 Speed</div>
-                            <div class="bike-price">¥48,000</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 3 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Specialized Hardrock</h3>
-                            <div class="bike-specs">MTB · 18" · 3×8 Speed</div>
-                            <div class="bike-price">¥29,000</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 4 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Cannondale Road</h3>
-                            <div class="bike-specs">Carbon Fork · 56cm · 2×10</div>
-                            <div class="bike-price">¥59,500</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 5 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Fixed Gear</h3>
-                            <div class="bike-specs">Steel · 52cm · Fixed/Free</div>
-                            <div class="bike-price">¥22,000</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 6 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Giant City Bike</h3>
-                            <div class="bike-specs">Step-Through · M · 7 Speed</div>
-                            <div class="bike-price">¥38,000</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 7 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Surly Cross-Check</h3>
-                            <div class="bike-specs">Steel · 54cm · 2×10 Speed</div>
-                            <div class="bike-price">¥65,000</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 8 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Schwinn Cruiser</h3>
-                            <div class="bike-specs">One Size · Single Speed</div>
-                            <div class="bike-price">¥32,000</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 9 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Mongoose MTB</h3>
-                            <div class="bike-specs">Large · 3×8 Speed</div>
-                            <div class="bike-price">¥27,500</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bike 10 -->
-                    <div class="bike-card">
-                        <div class="bike-img">自転車</div>
-                        <div class="bike-info">
-                            <h3 class="bike-title">Diamondback Hybrid</h3>
-                            <div class="bike-specs">Medium · 3×9 Speed</div>
-                            <div class="bike-price">¥42,000</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Process Section -->
-    <section id="process" class="process">
-        <div class="container">
-            <h2>Our Process</h2>
-            <div class="process-inner section-inner">
-                <div class="process-item">
-                    <div class="process-number">1</div>
-                    <div class="process-name">Acquisition</div>
-                    <div class="process-desc">Sourcing quality frames through donations and estates</div>
-                </div>
-                
-                <div class="process-item">
-                    <div class="process-number">2</div>
-                    <div class="process-name">Assessment</div>
-                    <div class="process-desc">Comprehensive evaluation of condition and needs</div>
-                </div>
-                
-                <div class="process-item">
-                    <div class="process-number">3</div>
-                    <div class="process-name">Restoration</div>
-                    <div class="process-desc">Careful repair and component replacement</div>
-                </div>
-                
-                <div class="process-item">
-                    <div class="process-number">4</div>
-                    <div class="process-name">Quality</div>
-                    <div class="process-desc">Rigorous testing to ensure safety and performance</div>
-                </div>
-                
-                <div class="process-item">
-                    <div class="process-number">5</div>
-                    <div class="process-name">Delivery</div>
-                    <div class="process-desc">Final adjustments and customer handover</div>
-                </div>
-            </div>
-            
-            <div class="section-inner" style="margin-top: 48px; text-align: center;">
-                <p style="max-width: 600px; margin: 0 auto;">
-                    Founded in 2020, Cycle · Works is dedicated to giving old bicycles new life. Every refurbished bike undergoes comprehensive inspection and service before being offered for sale with our 30-day warranty.
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <div class="section-inner">
-                <div class="contact-inner">
-                    <div class="contact-form">
-                        <form>
-                            <label for="name">Name</label>
-                            <input type="text" id="name" required>
-                            
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
-                            
-                            <label for="inquiry">Inquiry Type</label>
-                            <select id="inquiry" required>
-                                <option value="" disabled selected>Select an option</option>
-                                <option value="repair">Repair Service</option>
-                                <option value="purchase">Bike Purchase</option>
-                                <option value="question">General Question</option>
-                            </select>
-                            
-                            <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
-                            
-                            <button type="submit">Send</button>
-                        </form>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <h3>Location</h3>
-                            <div class="contact-text">
-                                123 Pedal Street<br>
-                                Bikeville, BK 12345
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <h3>Hours</h3>
-                            <div class="contact-text">
-                                Tuesday – Friday: 10:00–18:00<br>
-                                Saturday: 09:00–17:00<br>
-                                Sunday & Monday: Closed
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <h3>Contact</h3>
-                            <div class="contact-text">
-                                Tel: (555) 123-4567<br>
-                                Email: info@cycleworks.co
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div>© 2026 Cycle · Works</div>
-                <ul class="footer-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#bikes">Inventory</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Simple form handler
-        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message. We will respond shortly.');
-            this.reset();
-        });
-    </script>
+<!-- Header -->
+<header>
+<div class="container">
+<div class="header-inner">
+<a href="#" class="logo">okei · cycles</a>
+<nav>
+<ul>
+<li><a href="#services">Services</a></li>
+<li><a href="#bikes">Inventory</a></li>
+<li><a href="#process">Process</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<h1 class="hero-title">the everyday bicycle aesthetic</h1>
+<div class="hero-subtitle">okei quality repairs & restored bicycles</div>
+<a href="#contact" class="btn">Schedule Service</a>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section id="services">
+<div class="container">
+<h2>Services</h2>
+<div class="section-inner">
+<div class="grid">
+<div>
+<div class="service-item">
+<div class="service-header">
+<h3 class="service-title">Basic Tune-Up</h3>
+<span class="service-price">¥4,500</span>
+</div>
+<p>Safety check, gear and brake adjustment, tire inflation, chain lubrication.</p>
+</div>
+<div class="service-item">
+<div class="service-header">
+<h3 class="service-title">Complete Overhaul</h3>
+<span class="service-price">¥12,000</span>
+</div>
+<p>Disassembly, cleaning, bearing adjustment, full tune-up and safety check.</p>
+</div>
+<div class="service-item">
+<div class="service-header">
+<h3 class="service-title">Wheel Truing</h3>
+<span class="service-price">¥3,500</span>
+</div>
+<p>Precise wheel alignment to eliminate wobbles and improve performance.</p>
+</div>
+</div>
+<div>
+<div class="service-item">
+<div class="service-header">
+<h3 class="service-title">Flat Repair</h3>
+<span class="service-price">¥2,000</span>
+</div>
+<p>Tube replacement or repair, inspection for embedded objects, proper inflation.</p>
+</div>
+<div class="service-item">
+<div class="service-header">
+<h3 class="service-title">Brake Service</h3>
+<span class="service-price">¥3,500</span>
+</div>
+<p>Brake adjustment, pad replacement, cable lubrication for optimal stopping.</p>
+</div>
+<div class="service-item">
+<div class="service-header">
+<h3 class="service-title">Custom Work</h3>
+<span class="service-price">By Quote</span>
+</div>
+<p>Specialized repairs for unique issues or vintage bicycles.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bikes Section -->
+<section id="bikes" class="bikes">
+<div class="container">
+<h2>Available Bicycles</h2>
+<div class="section-inner">
+<div class="grid">
+<!-- Bike 1 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Vintage Raleigh</h3>
+<div class="bike-specs">Steel Frame · 54cm · 3×7 Speed</div>
+<div class="bike-price">¥35,000</div>
+<button
+class="snipcart-add"
+data-item-id="vintage-raleigh"
+data-item-name="Vintage Raleigh"
+data-item-price="35000"
+data-item-url="/"
+data-item-description="Steel frame, 54cm, 3×7 speed vintage style"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 2 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Trek Hybrid</h3>
+<div class="bike-specs">Aluminum · 17" · 3×9 Speed</div>
+<div class="bike-price">¥48,000</div>
+<button
+class="snipcart-add"
+data-item-id="trek-hybrid"
+data-item-name="Trek Hybrid"
+data-item-price="48000"
+data-item-url="/"
+data-item-description="Aluminum frame, 17 inch, 3×9 speed commuter bike"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 3 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Specialized Hardrock</h3>
+<div class="bike-specs">MTB · 18" · 3×8 Speed</div>
+<div class="bike-price">¥29,000</div>
+<button
+class="snipcart-add"
+data-item-id="specialized-hardrock"
+data-item-name="Specialized Hardrock"
+data-item-price="29000"
+data-item-url="/"
+data-item-description="Mountain bike, 18 inch, durable 3×8 drivetrain"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 4 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Cannondale Road</h3>
+<div class="bike-specs">Carbon Fork · 56cm · 2×10</div>
+<div class="bike-price">¥59,500</div>
+<button
+class="snipcart-add"
+data-item-id="cannondale-road"
+data-item-name="Cannondale Road"
+data-item-price="59500"
+data-item-url="/"
+data-item-description="Carbon fork road bike, 56cm, 2×10 drivetrain"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 5 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Fixed Gear</h3>
+<div class="bike-specs">Steel · 52cm · Fixed/Free</div>
+<div class="bike-price">¥22,000</div>
+<button
+class="snipcart-add"
+data-item-id="fixed-gear"
+data-item-name="Fixed Gear"
+data-item-price="22000"
+data-item-url="/"
+data-item-description="Steel fixed/free frame, 52cm"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 6 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Giant City Bike</h3>
+<div class="bike-specs">Step-Through · M · 7 Speed</div>
+<div class="bike-price">¥38,000</div>
+<button
+class="snipcart-add"
+data-item-id="giant-city"
+data-item-name="Giant City Bike"
+data-item-price="38000"
+data-item-url="/"
+data-item-description="Step-through city frame, medium, 7 speed"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 7 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Surly Cross-Check</h3>
+<div class="bike-specs">Steel · 54cm · 2×10 Speed</div>
+<div class="bike-price">¥65,000</div>
+<button
+class="snipcart-add"
+data-item-id="surly-cross-check"
+data-item-name="Surly Cross-Check"
+data-item-price="65000"
+data-item-url="/"
+data-item-description="Steel cross frame, 54cm, 2×10 gearing"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 8 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Schwinn Cruiser</h3>
+<div class="bike-specs">One Size · Single Speed</div>
+<div class="bike-price">¥32,000</div>
+<button
+class="snipcart-add"
+data-item-id="schwinn-cruiser"
+data-item-name="Schwinn Cruiser"
+data-item-price="32000"
+data-item-url="/"
+data-item-description="One size cruiser, single speed ride"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 9 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Mongoose MTB</h3>
+<div class="bike-specs">Large · 3×8 Speed</div>
+<div class="bike-price">¥27,500</div>
+<button
+class="snipcart-add"
+data-item-id="mongoose-mtb"
+data-item-name="Mongoose MTB"
+data-item-price="27500"
+data-item-url="/"
+data-item-description="Large mountain bike, 3×8 drivetrain"
+>
+Add to cart
+</button>
+</div>
+</div>
+<!-- Bike 10 -->
+<div class="bike-card">
+<div class="bike-img">自転車</div>
+<div class="bike-info">
+<h3 class="bike-title">Diamondback Hybrid</h3>
+<div class="bike-specs">Medium · 3×9 Speed</div>
+<div class="bike-price">¥42,000</div>
+<button
+class="snipcart-add"
+data-item-id="diamondback-hybrid"
+data-item-name="Diamondback Hybrid"
+data-item-price="42000"
+data-item-url="/"
+data-item-description="Medium hybrid bike, 3×9 gearing"
+>
+Add to cart
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section id="process" class="process">
+<div class="container">
+<h2>Our Process</h2>
+<div class="process-inner section-inner">
+<div class="process-item">
+<div class="process-number">1</div>
+<div class="process-name">Acquisition</div>
+<div class="process-desc">Sourcing quality frames through donations and estates</div>
+</div>
+<div class="process-item">
+<div class="process-number">2</div>
+<div class="process-name">Assessment</div>
+<div class="process-desc">Comprehensive evaluation of condition and needs</div>
+</div>
+<div class="process-item">
+<div class="process-number">3</div>
+<div class="process-name">Restoration</div>
+<div class="process-desc">Careful repair and component replacement</div>
+</div>
+<div class="process-item">
+<div class="process-number">4</div>
+<div class="process-name">Quality</div>
+<div class="process-desc">Rigorous testing to ensure safety and performance</div>
+</div>
+<div class="process-item">
+<div class="process-number">5</div>
+<div class="process-name">Delivery</div>
+<div class="process-desc">Final adjustments and customer handover</div>
+</div>
+</div>
+<div class="section-inner" style="margin-top: 48px; text-align: center;">
+<p style="max-width: 600px; margin: 0 auto;">
+Founded in 2020, Cycle · Works is dedicated to giving old bicycles new life. Every refurbished bike undergoes comprehensive inspection and service before being offered for sale with our 30-day warranty.
+</p>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact">
+<div class="container">
+<h2>Contact</h2>
+<div class="section-inner">
+<div class="contact-inner">
+<div class="contact-form">
+<form>
+<label for="name">Name</label>
+<input type="text" id="name" required>
+<label for="email">Email</label>
+<input type="email" id="email" required>
+<label for="inquiry">Inquiry Type</label>
+<select id="inquiry" required>
+<option value="" disabled selected>Select an option</option>
+<option value="repair">Repair Service</option>
+<option value="purchase">Bike Purchase</option>
+<option value="question">General Question</option>
+</select>
+<label for="message">Message</label>
+<textarea id="message" required></textarea>
+<button type="submit">Send</button>
+</form>
+</div>
+<div class="contact-info">
+<div class="contact-item">
+<h3>Location</h3>
+<div class="contact-text">
+123 Pedal Street<br>
+Bikeville, BK 12345
+</div>
+</div>
+<div class="contact-item">
+<h3>Hours</h3>
+<div class="contact-text">
+Tuesday – Friday: 10:00–18:00<br>
+Saturday: 09:00–17:00<br>
+Sunday & Monday: Closed
+</div>
+</div>
+<div class="contact-item">
+<h3>Contact</h3>
+<div class="contact-text">
+Tel: (555) 123-4567<br>
+Email: info@cycleworks.co
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-inner">
+<div>© 2026 Cycle · Works</div>
+<ul class="footer-links">
+<li><a href="#services">Services</a></li>
+<li><a href="#bikes">Inventory</a></li>
+<li><a href="#process">Process</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<!-- Snipcart -->
+<div hidden id="snipcart" data-api-key="YOUR_PUBLIC_API_KEY"></div>
+<script src="https://cdn.snipcart.com/themes/v3.5.0/default/snipcart.js" async></script>
+<script>
+// Simple form handler
+document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+e.preventDefault();
+alert('Thank you for your message. We will respond shortly.');
+this.reset();
+});
+</script>
 </body>
 </html>
