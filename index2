@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tmrw - Minimal Bike Store</title>
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        header {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
+
+        .snipcart-checkout {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .snipcart-checkout:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            padding: 2rem 0;
+        }
+
+        .product {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+            padding: 2rem;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+
+        .product:hover {
+            border-color: #ddd;
+            background: white;
+        }
+
+        .product-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-specs {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 1rem;
+        }
+
+        .snipcart-add-item {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            width: 100%;
+        }
+
+        .snipcart-add-item:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            border-top: 1px solid #e5e5e5;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            color: #999;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .cart-count {
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Snipcart customization */
+        .snipcart-modal__header {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .snipcart-modal__close {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>tmrw</h1>
+            <button class="snipcart-checkout">
+                Cart
+                <span class="snipcart-items-count cart-count"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h2>Single Speed & Fixie Bikes</h2>
+                <p>Minimal design. Maximum efficiency.</p>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section>
+            <div class="container">
+                <div class="products">
+                    <!-- Bike 1: Urban Fixed -->
+                    <div class="product">
+                        <div class="product-icon">🚲</div>
+                        <h3 class="product-name">Urban Fixed</h3>
+                        <div class="product-price">$599.00</div>
+                        <p class="product-description">
+                            Clean single-speed with fixed gear. Perfect for city commuting with responsive handling and minimal maintenance.
+                        </p>
+                        <div class="product-specs">
+                            Steel frame<br>
+                            700c wheels<br>
+                            Fixed gear only
+                        </div>
+                        <button
+                            class="snipcart-add-item"
+                            data-item-id="urban-fixed"
+                            data-item-price="599"
+                            data-item-name="Urban Fixed"
+                            data-item-description="Steel frame • 700c wheels • Fixed gear"
+                            data-item-image="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' font-size='60' text-anchor='middle' dominant-baseline='middle'%3E🚲%3C/text%3E%3C/svg%3E"
+                        >
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Bike 2: Minimalist One -->
+                    <div class="product">
+                        <div class="product-icon">🚲</div>
+                        <h3 class="product-name">Minimalist One</h3>
+                        <div class="product-price">$449.00</div>
+                        <p class="product-description">
+                            Lightweight fixed gear designed for speed and efficiency. Responsive geometry makes it ideal for track and street riding.
+                        </p>
+                        <div class="product-specs">
+                            Aluminum frame<br>
+                            700c wheels<br>
+                            Single speed
+                        </div>
+                        <button
+                            class="snipcart-add-item"
+                            data-item-id="minimalist-one"
+                            data-item-price="449"
+                            data-item-name="Minimalist One"
+                            data-item-description="Aluminum frame • 700c wheels • Single speed"
+                            data-item-image="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' font-size='60' text-anchor='middle' dominant-baseline='middle'%3E🚲%3C/text%3E%3C/svg%3E"
+                        >
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Bike 3: Classic Fixie -->
+                    <div class="product">
+                        <div class="product-icon">🚲</div>
+                        <h3 class="product-name">Classic Fixie</h3>
+                        <div class="product-price">$529.00</div>
+                        <p class="product-description">
+                            Traditional fixed-gear design with modern components. Built for durability and style on urban streets.
+                        </p>
+                        <div class="product-specs">
+                            Chromoly frame<br>
+                            700c wheels<br>
+                            Fixed gear
+                        </div>
+                        <button
+                            class="snipcart-add-item"
+                            data-item-id="classic-fixie"
+                            data-item-price="529"
+                            data-item-name="Classic Fixie"
+                            data-item-description="Chromoly frame • 700c wheels • Fixed gear"
+                            data-item-image="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' font-size='60' text-anchor='middle' dominant-baseline='middle'%3E🚲%3C/text%3E%3C/svg%3E"
+                        >
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 tmrw. Minimal bikes for urban riders.</p>
+        </div>
+    </footer>
+
+    <!-- Snipcart Script -->
+    <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script>
+    <div id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY"></div>
+
+    <script>
+        // Update cart count display
+        document.addEventListener('snipcart.ready', function() {
+            Snipcart.store.subscribe(() => {
+                const items = Snipcart.store.getState().cart.items;
+                document.querySelector('.snipcart-items-count').textContent = 
+                    items.length > 0 ? `(${items.length})` : '';
+            });
+        });
+    </script>
+</body>
+</html>
